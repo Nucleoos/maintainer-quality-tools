@@ -34,6 +34,7 @@ if __name__ == '__main__':
     do_lint_check = os.environ.get("LINT_CHECK", '1') == "1"
     do_tests = os.environ.get("TESTS", '1') == "1"
     export_transifex = os.environ.get("TRANSIFEX") == "1"
+    export_sphinx = os.environ.get("SPHINX") == "1"
     # Variable TRAVIS_PULL_REQUEST corresponds to pull request number if the
     # current job is a pull request, "false" if it's not a pull request.
     travis_pull_request = os.environ.get("TRAVIS_PULL_REQUEST")
@@ -50,5 +51,7 @@ if __name__ == '__main__':
     # Execute transifex export with no tests and if it's an official commit
     if not tests and export_transifex and travis_pull_request == "false":
         tests.append(['travis_transifex.py'])
+    if not tests and export_sphinx and travis_pull_request == "false":
+        tests.append(['travis_sphinx.py'])
     if tests:
         exit(main(tests))

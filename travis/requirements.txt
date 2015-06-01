@@ -35,3 +35,5 @@ vatnumber
 vobject
 werkzeug
 xlwt
+sphinx
+odoo-sphinx-autodoc
